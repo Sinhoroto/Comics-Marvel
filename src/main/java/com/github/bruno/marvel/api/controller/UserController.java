@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.bruno.marvel.domain.model.User;
+import com.github.bruno.marvel.domain.entity.UserEntity;
 import com.github.bruno.marvel.domain.repository.UserRepository;
 import com.github.bruno.marvel.domain.service.CrudUserService;
 
@@ -33,13 +33,13 @@ public class UserController {
 	private CrudUserService crudUserService;
 	
 	@GetMapping
-	public List<User> listar() {
+	public List<UserEntity> listar() {
 		return userRepository.findAll();
 	}
 	
 	@GetMapping("/{userid}")
-	public ResponseEntity<User> buscar(@PathVariable Long userid) {
-		Optional<User> user = userRepository.findById(userid);
+	public ResponseEntity<UserEntity> buscar(@PathVariable Long userid) {
+		Optional<UserEntity> user = userRepository.findById(userid);
 		
 		if (user.isPresent()) {
 			return ResponseEntity.ok(user.get());
@@ -50,12 +50,12 @@ public class UserController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User adicionar(@Valid @RequestBody User user) {
+	public UserEntity adicionar(@Valid @RequestBody UserEntity user) {
 		return crudUserService.salvar(user);
 	}
 	
 	@PutMapping("/{userid}")
-	public ResponseEntity<User> atualizar(@Valid @PathVariable Long userid, @RequestBody User user){
+	public ResponseEntity<UserEntity> atualizar(@Valid @PathVariable Long userid, @RequestBody UserEntity user){
 		if(!userRepository.existsById(userid)) {
 			return ResponseEntity.notFound().build();
 		}

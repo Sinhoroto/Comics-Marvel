@@ -1,4 +1,4 @@
-package com.github.bruno.marvel.domain.model;
+package com.github.bruno.marvel.domain.entity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -7,13 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+
 @Entity
-public class User {
+@Table(name = "User")
+public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,7 +77,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserEntity other = (UserEntity) obj;
 		return Objects.equals(id, other.id);
 	}
 	
