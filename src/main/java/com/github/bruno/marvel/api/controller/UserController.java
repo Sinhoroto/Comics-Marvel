@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/{userid}")
-	public ResponseEntity<UserEntity> buscar(@PathVariable Long userid) {
+	public ResponseEntity<UserEntity> buscar(@PathVariable Integer userid) {
 		Optional<UserEntity> user = userRepository.findById(userid);
 		
 		if (user.isPresent()) {
@@ -55,7 +55,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/{userid}")
-	public ResponseEntity<UserEntity> atualizar(@Valid @PathVariable Long userid, @RequestBody UserEntity user){
+	public ResponseEntity<UserEntity> atualizar(@Valid @PathVariable Integer userid, @RequestBody UserEntity user){
 		if(!userRepository.existsById(userid)) {
 			return ResponseEntity.notFound().build();
 		}
@@ -67,7 +67,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{userid}")
-	public ResponseEntity<Void> remover(@PathVariable Long userid) {
+	public ResponseEntity<Void> remover(@PathVariable Integer userid) {
 		if(!userRepository.existsById(userid)) {
 			return ResponseEntity.notFound().build();
 		}

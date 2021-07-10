@@ -1,17 +1,25 @@
 package com.github.bruno.marvel.domain.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -20,7 +28,7 @@ public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
 	@NotBlank
 	private String nome;
@@ -35,10 +43,20 @@ public class UserEntity {
 	
 	private Date nascimento;
 	
-	public Long getId() {
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "user")
+	private List<ComicEntity> comics = new ArrayList<>();
+	
+	public List<ComicEntity> getComics() {
+		return comics;
+	}
+	public void setComics(List<ComicEntity> comics) {
+		this.comics = comics;
+	}
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNome() {

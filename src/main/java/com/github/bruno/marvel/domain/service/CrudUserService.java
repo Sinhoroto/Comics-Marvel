@@ -22,7 +22,7 @@ public class CrudUserService {
 		return userRepository.save(user);
 	}
 	
-	public void excluir(Long userid) {
+	public void excluir(Integer userid) {
 		userRepository.deleteById(userid);
 	}
 }

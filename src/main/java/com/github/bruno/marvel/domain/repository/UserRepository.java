@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.github.bruno.marvel.domain.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
 	UserEntity findByEmail(String email);
 	UserEntity findByCpf(String cpf);
