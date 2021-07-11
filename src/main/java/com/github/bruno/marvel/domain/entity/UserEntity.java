@@ -1,11 +1,10 @@
 package com.github.bruno.marvel.domain.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -45,12 +42,12 @@ public class UserEntity {
 	
 	@JsonManagedReference
 	@ManyToMany(mappedBy = "user")
-	private List<ComicEntity> comics = new ArrayList<>();
+	private Set<ComicEntity> comics = new HashSet<>();
 	
-	public List<ComicEntity> getComics() {
+	public Set<ComicEntity> getComics() {
 		return comics;
 	}
-	public void setComics(List<ComicEntity> comics) {
+	public void setComics(Set<ComicEntity> comics) {
 		this.comics = comics;
 	}
 	public Integer getId() {

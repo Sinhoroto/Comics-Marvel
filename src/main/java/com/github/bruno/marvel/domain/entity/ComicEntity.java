@@ -1,8 +1,8 @@
 package com.github.bruno.marvel.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class ComicEntity {
 	@JsonBackReference
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "user_comic", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="comic_id"))
-	private List<UserEntity> user = new ArrayList<>();
+	private Set<UserEntity> user = new HashSet<>();
 	
 	
 	
@@ -50,11 +50,11 @@ public class ComicEntity {
 	
 	
 	
-	public List<UserEntity> getUser() {
+	public Set<UserEntity> getUser() {
 		return user;
 	}
 
-	public void setUser(List<UserEntity> user) {
+	public void setUser(Set<UserEntity> user) {
 		this.user = user;
 	}
 
