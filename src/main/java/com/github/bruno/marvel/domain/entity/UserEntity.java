@@ -95,6 +95,10 @@ public class UserEntity {
 		UserEntity other = (UserEntity) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+	@Override
+	public String toString() {
+		return "UserEntity [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", nascimento="
+				+ nascimento + ", comics=" + comics + "]";
+	}
 	
 }

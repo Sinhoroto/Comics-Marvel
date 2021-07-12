@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Comic")
@@ -30,6 +31,7 @@ public class ComicEntity {
 	private String descricao;
 	
 	@JsonBackReference
+	//@JsonIgnore
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "user_comic", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="comic_id"))
 	private Set<UserEntity> user = new HashSet<>();
